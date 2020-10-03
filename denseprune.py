@@ -9,17 +9,17 @@ parser = argparse.ArgumentParser(description='PyTorch Slimming CIFAR prune')
 parser.add_argument('--dataset', type=str, default='cifar10',
                     help='training dataset (default: cifar10)')
 parser.add_argument('--test-batch-size', type=int, default=32, metavar='N',
-                    help='input batch size for testing (default: 256)')
+                    help='input batch size for testing (default: 32)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
                     help='disables CUDA training')
 parser.add_argument('--depth', type=int, default=40,
                     help='depth of the resnet')
-parser.add_argument('--percent', type=float, default=0.5,
-                    help='scale sparse rate (default: 0.5)')
+parser.add_argument('--percent', type=float, default=0.6,
+                    help='scale sparse rate (default: 0.6)')
 parser.add_argument('--model', default='', type=str, metavar='PATH',
                     help='path to the model (default: none)')
 parser.add_argument('--save', default='./logs/', type=str, metavar='PATH',
-                    help='path to save pruned model (default: none)')
+                    help='path to save pruned model (default: ./logs/)')
 parser.add_argument('--filename', default='', type=str, metavar='PATH',
                     help='path to save pruned model (default: none)')
 
@@ -34,6 +34,7 @@ model = densenet(depth=args.depth, dataset=args.dataset)
 if args.cuda:
     model.cuda()
 if args.model:
+    args.model = args.save + args.model + ".pth"
     if os.path.isfile(args.model):
         print("=> loading checkpoint '{}'".format(args.model))
         checkpoint = torch.load(args.model)

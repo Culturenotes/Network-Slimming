@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser(description='PyTorch Slimming CIFAR training')
 #parser.add_argument('--mode', type=str, required=True, choices=['train', 'prune', 'test'])
 
 parser.add_argument('--dataset', type=str, default='cifar10',
-                    help='training dataset (default: cifar100)')
+                    help='training dataset (default: cifar10)')
 parser.add_argument('--sparsity-regularization', '-sr', dest='sr', action='store_true',
                     help='train with channel sparsity regularization')
 parser.add_argument('--using-amp_loss', '-amp_loss', dest='amp_loss', action='store_true',
@@ -33,7 +33,7 @@ parser.add_argument('--batch-size', type=int, default=64, metavar='N',
 parser.add_argument('--test-batch-size', type=int, default=64, metavar='N',
                     help='input batch size for testing (default: 64)')
 parser.add_argument('--epochs', type=int, default=10, metavar='N',
-                    help='number of epochs to train (default: 160)')
+                    help='number of epochs to train (default: 10)')
 parser.add_argument('--resume', default='', type=str, metavar='PATH',
                     help='path to latest checkpoint (default: none)')
 parser.add_argument('--no-cuda', action='store_true', default=False,
@@ -219,7 +219,7 @@ def network(file):
     if file!=None:
         datanames = os.listdir(args.save)
         for dataname in datanames:
-            if os.path.splitext(dataname)[1] == '.txt':  # 目录下包含.json的文件
+            if os.path.splitext(dataname)[1] == '.txt':  # 目录下包含.txt的文件
                 print(dataname)
                 cfg = read_cfg(args.save+dataname)
         model = models.__dict__[args.arch](depth=args.depth, dataset=args.dataset, cfg=cfg).cuda()
