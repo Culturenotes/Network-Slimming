@@ -5,16 +5,6 @@ This repository contains an official pytorch implementation for the following pa
 Original implementation: [slimming](https://github.com/liuzhuang13/slimming) in Torch.    
 The code is based on [pytorch-slimming](https://github.com/foolwood/pytorch-slimming). I add support for ResNet and DenseNet.  
 
-Citation:
-```
-@InProceedings{Liu_2017_ICCV,
-    author = {jiweiLiu},
-    title = {Learning Efficient Convolutional Networks Through Network Slimming},
-    booktitle = {The IEEE International Conference on Computer Vision (ICCV)},
-    month = {Oct},
-    year = {2020}
-}
-```
 
 
 ## Dependencies
